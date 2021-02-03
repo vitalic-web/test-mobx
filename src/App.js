@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import MobxElement from './components/MobxElement';
+import TestContext from './contexts/TestContext';
+import TimerStore from './stores/TimerStore';
+import OtherStore from './stores/OtherStore';
+import MobxElementTwo from './components/MobxElementTwo';
+import MobxFav from './components/MobxFav';
 
 function App() {
+  const mainStore = {
+    timerStore: new TimerStore(),
+    otherStore: new OtherStore()
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TestContext.Provider value={mainStore}>
+      <div className="App">
+        <MobxElement />
+        <MobxElementTwo />
+        <MobxFav />
+      </div>
+    </TestContext.Provider>
   );
 }
 
